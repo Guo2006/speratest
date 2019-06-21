@@ -7,4 +7,4 @@ This scripts:
 TODO:
 1) Make post install jenkins configuration 
 2) Configure host2 as slave node
-3) Add job to jankins and build it on slave.
+3) Add job to jenkins and build it on slave.
