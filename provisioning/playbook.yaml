@@ -1,0 +1,7 @@
+---
+- hosts: host1
+  roles:
+    - epel
+    - jenkins
+#    - jenkins_configuration
+#    - jenkins_job_create

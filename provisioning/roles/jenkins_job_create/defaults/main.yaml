@@ -1,0 +1,14 @@
+jenkins_users: []
+jenkins_users_example:
+  - username: "user1"
+    password: "password1"
+    userperm: "hudson.model.Hudson.Administer"
+    sshpubkey: ""
+  - username: "user2"
+    password: "password2"
+    userperm: "hudson.model.Hudson.Administer"
+    sshpubkey: ""
+  - username: "user3"
+    password: "password3"
+    userperm: "hudson.model.Hudson.Read"
+

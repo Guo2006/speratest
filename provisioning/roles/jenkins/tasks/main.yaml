@@ -1,0 +1,46 @@
+---   
+    - name: Install JAVA JDK
+      yum:
+        name: wget, java-1.8.0-openjdk
+      become: yes
+    - name:  jenkins.repo Installation
+      get_url:
+        url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+      become: yes
+    - name: Import Jenkins Key
+      rpm_key:
+        state: present
+        key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+      become: yes
+    - name: Install Jenkins
+      yum:
+        name: jenkins
+        state: present
+      become: yes
+#    - name: Change Jenkins JAVA options
+#      lineinfile: 
+#        dest=/etc/sysconfig/jenkins
+#        regexp=^JENKINS_JAVA_OPTIONS=
+#        line=JENKINS_JAVA_OPTIONS="{{jenkins.JAVA_OPTIONS}}"
+#      become: true
+
+    - name: Start and Enable Jenkins
+      systemd:
+        name: jenkins
+        state: started
+        enabled: true
+      become: yes
+      
+#    - name: Sleep for 30 seconds and continue with play
+#      wait_for: timeout=30
+#
+#    - name: Get init password Jenkins
+#      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+#      changed_when: false
+#      register: result
+#      become: yes
+#    - name: Print init password Jenkins
+#      debug:
+#        var: result.stdout
+#      become: yes

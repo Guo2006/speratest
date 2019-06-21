@@ -1,0 +1,8 @@
+---
+
+
+     - name: Maven installation 
+       yum:
+         name: java-1.8.0-openjdk, maven
+         state: present
+       become: yes

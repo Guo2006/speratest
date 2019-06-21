@@ -1,0 +1,9 @@
+---
+
+
+     - name: EPEL installation 
+       yum:
+         name: epel-release
+         update_cache: yes
+         state: present
+       become: yes

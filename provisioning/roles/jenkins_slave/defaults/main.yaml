@@ -1,0 +1,18 @@
+---
+# jenkins master
+ master_username: admin
+ master_password: admin
+ master_host: "192.168.10.105"
+ master_port: 8081
+ master_url: "http://192.168.10.105:8081"
+#
+# # general slave
+ slave_agent_name: agent
+ slave_executors_num: 1
+#
+# # jenkins linux slave
+ slave_host: "192.168.10.106"
+ slave_ssh_port: 2200
+ slave_home: /opt/jenkins
+ slave_username: slave_user
+ slave_password: password

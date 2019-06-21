@@ -1,0 +1,6 @@
+---
+- hosts: host2
+  roles:
+    - epel
+    - maven
+    - jenkins_slave
