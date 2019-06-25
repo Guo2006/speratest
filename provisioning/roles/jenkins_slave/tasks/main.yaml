@@ -26,7 +26,7 @@
       
 
     - name: Get secret for Slave
-      shell: curl -L -s -u artem:admin -X GET  http://192.168.10.105:8080/computer/Slave1/s.remoting.jnlp.Main\"><argument>\([a-z0-9]*\).*/\1/'ass=\"hudson.
+      shell: curl -L -s -u artem:admin -X GET  http://192.168.10.105:8080/computer/Slave1/slave-agent.jnlp | sed 's/.*<application-desc main-class=\"hudson.remoting.jnlp.Main\"><argument>\([a-z0-9]*\).*/\1/'
       register: slave_secret   
       
 
