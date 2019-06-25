@@ -3,7 +3,7 @@
 
      - name: EPEL installation 
        yum:
-         name: epel-release
+         name: epel-release, vim, wget, mc
          update_cache: yes
          state: present
        become: yes

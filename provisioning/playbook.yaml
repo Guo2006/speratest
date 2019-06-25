@@ -3,5 +3,5 @@
   roles:
     - epel
     - jenkins
-#    - jenkins_configuration
+    - jenkins_configuration
 #    - jenkins_job_create

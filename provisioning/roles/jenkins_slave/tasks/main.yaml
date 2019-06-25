@@ -1,20 +1,36 @@
 ---
 
-- name: Create a group for jenkins user on salve
-  group:
-    name: "{{ slave_username }}"
-    state: present
-  become: True
+    - name: Create a group for jenkins user on salve
+      group:
+        name: "{{ slave_username }}"
+        state: present
+      become: True
 
-- name: Create jenkins user on slave
-  user:
-    name: "{{ slave_username }}"
-    group: "{{ slave_username }}"
-    password: "{{ slave_password | password_hash('sha512', \
-               65534 | random(seed=inventory_hostname) | string) }}"
-    update_password: always
-    state: present
-    append: True
-    createhome: True
-  become: True
+    - name: Create jenkins user on slave
+      user:
+        name: "{{ slave_username }}"
+        group: "{{ slave_username }}"
+        password: "{{ slave_password | password_hash('sha512', \
+                   65534 | random(seed=inventory_hostname) | string) }}"
+        update_password: always
+        state: present
+        append: True
+        createhome: True
+      become: True
+      
+    - name: Download agent from master
+      get_url:
+        url: http://192.168.10.105:8080/jnlpJars/agent.jar
+        dest: /home/vagrant/agent.jar
+      become: yes
+      
+
+    - name: Get secret for Slave
+      shell: curl -L -s -u artem:admin -X GET  http://192.168.10.105:8080/computer/Slave1/s.remoting.jnlp.Main\"><argument>\([a-z0-9]*\).*/\1/'ass=\"hudson.
+      register: slave_secret   
+      
+
+    - name: Run agent on a slave
+      shell: java -jar agent.jar -jnlpUrl http://192.168.10.105:8080/computer/Slave1/slave-agent.jnlp -secret {{slave_secret.stdout}} &
+
 

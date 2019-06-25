@@ -1,4 +1,25 @@
 ---
 
 
-     - name: Jenkins configuration
+     - copy:  
+         src: /root/vagrant/provisioning/roles/jenkins_configuration/templates/test.xml
+         dest: /home/vagrant/job.xml
+         mode: 0777
+
+     - name: Downloading Jenkins cli
+       action: shell wget http://192.168.10.105:8080/jnlpJars/jenkins-cli.jar
+       args:
+         creates: /home/vagrant/jenkins-cli.jar
+
+     - name: create job
+       shell: java -jar jenkins-cli.jar -s http://192.168.10.105:8080  -auth artem:admin create-job test < job.xml 
+
+     - copy:
+         src: /root/vagrant/provisioning/roles/jenkins_configuration/templates/slave.xml
+         dest: /home/vagrant/slave.xml
+         mode: 0777
+
+
+     - name: Add slave to master configuration
+       shell: java -jar jenkins-cli.jar -s http://192.168.10.105:8080  -auth artem:admin create-node Slave1 < slave.xml
+

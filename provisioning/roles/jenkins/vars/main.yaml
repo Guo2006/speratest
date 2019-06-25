@@ -1,4 +1,0 @@
----
-#Add Java options to avoid manual jenkins configuration 
-     jenkins:
-       JAVA_OPTIONS: "-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"

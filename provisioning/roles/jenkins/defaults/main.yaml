@@ -1,0 +1,4 @@
+---
+# jenkins master
+ jenkins_admin_username: artem
+ jenkins_admin_password: admin
