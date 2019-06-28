@@ -16,7 +16,7 @@
         state: present
         append: True
         createhome: True
-      become: True
+      become: yes
       
     - name: Download agent from master
       get_url:
@@ -31,6 +31,7 @@
       
 
     - name: Run agent on a slave
-      shell: java -jar agent.jar -jnlpUrl http://192.168.10.105:8080/computer/Slave1/slave-agent.jnlp -secret {{slave_secret.stdout}} &
+      shell: nohup java -jar agent.jar -jnlpUrl http://192.168.10.105:8080/computer/Slave1/slave-agent.jnlp -secret {{slave_secret.stdout}} &> /home/vagrant/jenkins.log &
+      become: yes
 
 

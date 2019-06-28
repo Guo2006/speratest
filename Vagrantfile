@@ -34,5 +34,15 @@ Vagrant.configure("2") do |config|
       ansible.verbose = "vv"
       ansible.inventory_path = ".vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory"
     end
-  end    
+  end
+
+#  config.vm.define "host3" do |host3|
+#    host3.vm.box = "centos/7"
+#    host3.vm.network :private_network, ip: "192.168.10.107"
+#  end
+
+
+
+
+    
 end
